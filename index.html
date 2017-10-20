@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modal Platzi</title>
+  <style>
+
+
+  /*  @font-face {
+        font-family: "Redacted";
+        /*src: url("redacted-font/fonts/web/redacted-script-light.eot");
+        src: /*url("redacted-font/fonts/web/redacted-script-light.woff2") format("woff2") ,
+             url("redacted-font/fonts/web/redacted-script-light.woff") format("woff") ,
+             url("redacted-font/fonts/web/redacted-script-light.otf") format("opentype") ,
+             url("redacted-font/fonts/web/redacted-script-light.svg#filename") format("svg")
+             ;
+    }*/
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #26404E;
+      margin: 0;
+      font-family: "Arial";
+    }
+
+    .overlay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      left: 0; right: 0; top: 0; bottom: 0;
+      opacity: 0;
+
+    }
+
+    .overlay.active {
+      visibility: visible;
+    }
+
+
+    .modal {
+      padding: 10px;
+      background: lightgrey;
+      text-align: center;
+      border: solid 1px red;
+
+
+
+    }
+
+
+    .btn {
+     text-align: center;
+     padding: .6em .8em .8em;
+     border: none;
+     color: white;
+     background: lightgray;
+     margin: 5px;
+     border-radius: 5px;
+     cursor: pointer;
+     box-shadow: inset 0 -.2em rgba(0,0,0, .2);
+     outline: 0;
+     transition: .2s;
+     will-change: transform;
+   }
+
+   .btn.exit {
+     float: right;
+     background: #000000;
+     border: solid red 1px;
+     border-radius: 50%;
+   }
+
+   .btn.exit:before {
+     content: "X";
+   }
+
+
+   .btn.primary {
+     background: #3B7CFB;
+   }
+   .btn.warning {
+     background: #ff463b;
+   }
+
+  .btn.clic {
+    position: absolute;
+    top: 7px;
+    z-index: 5;
+  }
+
+  .btn:active {
+     transform: scale(.9);
+  }
+
+    @keyframes modalIn {
+      0% {
+        transform: scale(0);
+      }
+
+      25% {
+        transform: scale(2);
+      }
+
+      50% {
+        transform: scale(1);
+      }
+
+
+      95% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <img src="fondo.png" alt="Fondo" id="imgFondo">
+  <button class="btn primary clic" id="clic">Ver Modal</button>
+  <div class="overlay">
+    <div class="modal" id="divModal">
+      <button class="btn exit" id="exit"></button>
+      <h1>¡Suscríbete!</h1>
+      <h2>Puedes suscribirte a nuestra publicación mensual</h2>
+      <h3>Haz clic para llevarte a la página de registro</h3>
+      <div class="modal-buttons">
+        <button class="btn primary" id="perfect">Perfecto</button>
+        <button class="btn warning" id="noInteres">No me interesa</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $btnModal = document.getElementById('clic');
+    const $btnExit = document.getElementById('exit');
+    const $btnNoInteres = document.getElementById('noInteres');
+    const $btnPerfect = document.getElementById('perfect');
+    const $imgFondo = document.getElementById('imgFondo');
+    const $divModal = document.getElementById('divModal');
+    const $overLay = document.getElementsByClassName('overlay');
+
+    $btnModal.addEventListener('click', (event) => {
+      $btnModal.style.zIndex = '0';
+      $overLay[0].style.opacity = '1';
+      $divModal.style.animation = 'modalIn 3s forwards'
+    });
+
+    $btnPerfect.addEventListener('click', (event) => {
+      $btnModal.style.zIndex = '5';
+      $overLay[0].style.opacity = '0';
+      $imgFondo.src = "fondo2.png";
+    });
+
+    $btnExit.addEventListener('click', (event) => {
+      $btnModal.style.zIndex = '5';
+      $overLay[0].style.opacity = '0';
+    });
+
+    $btnNoInteres.addEventListener('click', (event) => {
+      $btnModal.style.zIndex = '5';
+      $overLay[0].style.opacity = '0';
+    });
+
+
+
+
+  </script>
+
+</body>
+</html>
